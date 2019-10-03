@@ -17,7 +17,7 @@ namespace RegistroEmpleado.UI.Consultas
             InitializeComponent();
         }
 
-        private void DesdedateTimePicker_ValueChanged(object sender, EventArgs e)
+        private void Consultarbutton_Click(object sender, EventArgs e)
         {
 
         }

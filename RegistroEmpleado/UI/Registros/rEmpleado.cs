@@ -14,6 +14,7 @@ namespace RegistroEmpleado.UI.Registros
 {
     public partial class rEmpleado : Form
     {
+        RepositorioBase<Empleado> repositorio;
         public rEmpleado()
         {
             InitializeComponent();
@@ -146,15 +147,96 @@ namespace RegistroEmpleado.UI.Registros
             return paso;
         }
 
+        private bool ExisteEnLaBaseDeDatos()
+        {
+            repositorio = new RepositorioBase<Empleado>();
+            Empleado e = repositorio.Buscar((int)EmpleadoIDnumericUpDown.Value);
+            return (e != null);
+        }
+
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
+            Empleado empleado;
+            bool paso = false;
+            repositorio = new RepositorioBase<Empleado>();
             if (!Validar())
                 return;
+
+            empleado = LlenaClase();
+            if(EmpleadoIDnumericUpDown.Value == 0)
+            {
+                paso = repositorio.Guardar(empleado);
+            }
+            else
+            {
+                if (!ExisteEnLaBaseDeDatos())
+                {
+                    MessageBox.Show("No se puede modifiar porque no existe", "Fallo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                paso = repositorio.Modificar(empleado);
+            }
+
+            if (paso)
+            {
+                MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No se puedo guardar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void Nuevobutton_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+        }
+
+        private void Buscarbutton_Click(object sender, EventArgs e)
+        {
+            repositorio = new RepositorioBase<Empleado>();
+            int ID = Convert.ToInt32(EmpleadoIDnumericUpDown.Value);
+            Empleado empleado;
+
+            empleado = repositorio.Buscar(ID);
+
+            if (empleado != null)
+            {
+                LimpiarCampos();
+                LlenaCampos(empleado);
+            }
+            else
+            {
+                MessageBox.Show("Empleado no encontrado", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Eliminarbutton_Click(object sender, EventArgs e)
+        {
+            bool paso;
+            int ID = Convert.ToInt32(EmpleadoIDnumericUpDown.Value);
+
+            if (!ExisteEnLaBaseDeDatos())
+            {
+                MessageBox.Show("No se puede eliminar porque no existe en la base de datos", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                paso = repositorio.Eliminar(ID);
+
+                if (paso)
+                {
+                    LimpiarCampos();
+                    MessageBox.Show("Elimando con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al tratar de eliminar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
         }
     }
 }

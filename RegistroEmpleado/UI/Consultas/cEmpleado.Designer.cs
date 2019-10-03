@@ -57,7 +57,7 @@
             this.DesdedateTimePicker.Name = "DesdedateTimePicker";
             this.DesdedateTimePicker.Size = new System.Drawing.Size(92, 20);
             this.DesdedateTimePicker.TabIndex = 1;
-            this.DesdedateTimePicker.ValueChanged += new System.EventHandler(this.DesdedateTimePicker_ValueChanged);
+//            this.DesdedateTimePicker.ValueChanged += new System.EventHandler(this.DesdedateTimePicker_ValueChanged);
             // 
             // Hastalabel
             // 
@@ -75,7 +75,7 @@
             this.HastadateTimePicker.Name = "HastadateTimePicker";
             this.HastadateTimePicker.Size = new System.Drawing.Size(92, 20);
             this.HastadateTimePicker.TabIndex = 1;
-            this.HastadateTimePicker.ValueChanged += new System.EventHandler(this.DesdedateTimePicker_ValueChanged);
+           // this.HastadateTimePicker.ValueChanged += new System.EventHandler(this.DesdedateTimePicker_ValueChanged);
             // 
             // Filtrolabel
             // 
@@ -131,6 +131,7 @@
             this.Consultarbutton.Text = "Consultar";
             this.Consultarbutton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Consultarbutton.UseVisualStyleBackColor = true;
+            this.Consultarbutton.Click += new System.EventHandler(this.Consultarbutton_Click);
             // 
             // ConsultadataGridView
             // 
