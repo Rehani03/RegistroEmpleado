@@ -156,6 +156,7 @@
             this.Controls.Add(this.Filtrolabel);
             this.Controls.Add(this.Hastalabel);
             this.Controls.Add(this.Desdelabel);
+            this.MaximizeBox = false;
             this.Name = "cEmpleado";
             this.Text = "Consultar Empleado";
             ((System.ComponentModel.ISupportInitialize)(this.ConsultadataGridView)).EndInit();
