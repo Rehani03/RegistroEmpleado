@@ -180,6 +180,7 @@ namespace RegistroEmpleado.UI.Registros
             if (paso)
             {
                 MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarCampos();
             }
             else
             {
