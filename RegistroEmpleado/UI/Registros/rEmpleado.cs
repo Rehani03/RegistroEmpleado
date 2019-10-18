@@ -14,7 +14,7 @@ namespace RegistroEmpleado.UI.Registros
 {
     public partial class rEmpleado : Form
     {
-        RepositorioBase<Empleado> repositorio;
+        
         public rEmpleado()
         {
             InitializeComponent();
@@ -149,7 +149,7 @@ namespace RegistroEmpleado.UI.Registros
 
         private bool ExisteEnLaBaseDeDatos()
         {
-            repositorio = new RepositorioBase<Empleado>();
+            RepositorioBase<Empleado> repositorio = new RepositorioBase<Empleado>();
             Empleado e = repositorio.Buscar((int)EmpleadoIDnumericUpDown.Value);
             return (e != null);
         }
@@ -158,7 +158,7 @@ namespace RegistroEmpleado.UI.Registros
         {
             Empleado empleado;
             bool paso = false;
-            repositorio = new RepositorioBase<Empleado>();
+            RepositorioBase<Empleado> repositorio = new RepositorioBase<Empleado>();
             if (!Validar())
                 return;
 
@@ -196,7 +196,7 @@ namespace RegistroEmpleado.UI.Registros
 
         private void Buscarbutton_Click(object sender, EventArgs e)
         {
-            repositorio = new RepositorioBase<Empleado>();
+            RepositorioBase<Empleado> repositorio = new RepositorioBase<Empleado>();
             int ID = Convert.ToInt32(EmpleadoIDnumericUpDown.Value);
             Empleado empleado;
 
@@ -217,6 +217,7 @@ namespace RegistroEmpleado.UI.Registros
         {
             bool paso;
             int ID = Convert.ToInt32(EmpleadoIDnumericUpDown.Value);
+            RepositorioBase<Empleado> repositorio = new RepositorioBase<Empleado>();
 
             if (!ExisteEnLaBaseDeDatos())
             {
